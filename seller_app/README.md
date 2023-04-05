@@ -14,11 +14,3 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
-
-
-Good evening,
-@Lekha Mishra ma'am
-Please find my today task . 
-1. Added SplashScreen.
-2. Added login and sign-up page.
-3. Added MapLocator.
