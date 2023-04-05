@@ -39,7 +39,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   getCurrentLocation() async {
     LocationPermission permission = await Geolocator.requestPermission();
     Position newPosition = await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.low,
+      desiredAccuracy: LocationAccuracy.high,
     );
     position = newPosition;
 
@@ -124,7 +124,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     controller: locationController,
                     hintText: 'Cafe/Restaurent Address',
                     isObsecre: false,
-                    enabled: false,
+                    enabled: true,
                   ),
                   Container(
                     width: 400,
