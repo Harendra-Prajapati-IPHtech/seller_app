@@ -48,16 +48,30 @@ class _MySplashScreenState extends State<MySplashScreen> {
             const SizedBox(
               height: 10,
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(8.0),
-              child: Text(
-                'Riders Food App',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 48,
-                    fontFamily: "Signatra",
-                    letterSpacing: 3),
+              child: 
+              Column(
+                children: const [
+                  Text(
+                    'Riders Food App',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 48,
+                        fontFamily: "Signatra",
+                        letterSpacing: 3),
+                  ),
+                  Text(
+                    "World's Largest & No.1 Food Delivery App",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.black54,
+                        fontSize: 24,
+                        fontFamily: "Signatra",
+                        letterSpacing: 3),
+                  ),
+                ],
               ),
             )
           ],
