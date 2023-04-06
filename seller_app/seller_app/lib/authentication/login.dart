@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:seller_app/authentication/auth_screen.dart';
 import 'package:seller_app/global/global.dart';
 import 'package:seller_app/widgets/error_Dialog.dart';
 import 'package:seller_app/widgets/loading_dialog.dart';
@@ -61,11 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
           });
     });
     if (currentUser != null) {
-      readDataAndSetDataLocally(currentUser!).then((value) {
-        Navigator.pop(context);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()));
-      });
+      readDataAndSetDataLocally(currentUser!);
     }
   }
 
@@ -75,13 +72,32 @@ class _LoginScreenState extends State<LoginScreen> {
         .doc(currentUser.uid)
         .get()
         .then((snapshot) async {
-      await sharedPreferences!.setString("uid", currentUser.uid);
-      await sharedPreferences!
-          .setString("email", snapshot.data()!["sellerEmail"]);
-      await sharedPreferences!
-          .setString("name", snapshot.data()!["sellerName"]);
-      await sharedPreferences!
-          .setString("PhotoUrl", snapshot.data()!["sellerAvtar"]);
+      if (snapshot.exists) {
+        await sharedPreferences!.setString("uid", currentUser.uid);
+        await sharedPreferences!
+            .setString("email", snapshot.data()!["sellerEmail"]);
+        await sharedPreferences!
+            .setString("name", snapshot.data()!["sellerName"]);
+        await sharedPreferences!
+            .setString("PhotoUrl", snapshot.data()!["sellerAvtar"]);
+        // ignore: use_build_context_synchronously
+        Navigator.pop(context);
+        // ignore: use_build_context_synchronously
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const HomeScreen()));
+      } else {
+        firebaseAuth.signOut();
+        Navigator.pop(context);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const AuthScreen()));
+        showDialog(
+            context: context,
+            builder: (context) {
+              return const ErrorDialog(
+                message: "no record found",
+              );
+            });
+      }
     });
   }
 
