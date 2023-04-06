@@ -1,12 +1,15 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:seller_app/global/global.dart';
-import 'package:seller_app/widgets/error_Dialog.dart';
-import 'package:seller_app/widgets/loading_dialog.dart';
-import 'package:seller_app/widgets/mainScreens/home_screen.dart';
+import '../global/global.dart';
 
 import '../widgets/custom_text_field.dart';
+import '../widgets/error_Dialog.dart';
+import '../widgets/loading_dialog.dart';
+import '../widgets/mainScreens/home_screen.dart';
+import 'auth_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -61,27 +64,40 @@ class _LoginScreenState extends State<LoginScreen> {
           });
     });
     if (currentUser != null) {
-      readDataAndSetDataLocally(currentUser!).then((value) {
-        Navigator.pop(context);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()));
-      });
+      readDataAndSetDataLocally(currentUser!);
     }
   }
 
   Future readDataAndSetDataLocally(User currentUser) async {
     await FirebaseFirestore.instance
-        .collection("sellers")
+        .collection("riders")
         .doc(currentUser.uid)
         .get()
         .then((snapshot) async {
-      await sharedPreferences!.setString("uid", currentUser.uid);
-      await sharedPreferences!
-          .setString("email", snapshot.data()!["sellerEmail"]);
-      await sharedPreferences!
-          .setString("name", snapshot.data()!["sellerName"]);
-      await sharedPreferences!
-          .setString("PhotoUrl", snapshot.data()!["sellerAvtar"]);
+      if (snapshot.exists) {
+        await sharedPreferences!.setString("uid", currentUser.uid);
+        await sharedPreferences!
+            .setString("email", snapshot.data()!["riderEmail"]);
+        await sharedPreferences!
+            .setString("name", snapshot.data()!["riderName"]);
+        await sharedPreferences!
+            .setString("PhotoUrl", snapshot.data()!["riderAvtar"]);
+        Navigator.pop(context);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const HomeScreen()));
+      } else {
+        firebaseAuth.signOut();
+        Navigator.pop(context);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const AuthScreen()));
+        showDialog(
+            context: context,
+            builder: (context) {
+              return const ErrorDialog(
+                message: "No record Exist Try Again",
+              );
+            });
+      }
     });
   }
 
@@ -96,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Padding(
               padding: const EdgeInsets.all(15),
               child: Image.asset(
-                'assets/images/seller.png',
+                'assets/images/logo.png',
                 height: 270,
               ),
             ),
