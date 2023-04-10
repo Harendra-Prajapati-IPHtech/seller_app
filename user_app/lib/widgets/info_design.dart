@@ -17,7 +17,7 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
     return InkWell(
       splashColor: Colors.amber,
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(5),
         child: Container(
           height: 300,
           width: MediaQuery.of(context).size.width,
@@ -27,7 +27,29 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
               thickness: 3,
               color: Colors.grey[300],
             ),
-            Image.network(widget.model!.sellerAvtar!)
+            Image.network(
+              widget.model!.sellerAvtar!,
+              height: 220,
+              fit: BoxFit.cover,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              widget.model!.sellerName!,
+              style: const TextStyle(
+                  color: Colors.cyan, fontSize: 20, fontFamily: "Train"),
+            ),
+            Text(
+              widget.model!.sellerEmail!,
+              style: const TextStyle(
+                  color: Colors.grey, fontSize: 20, fontFamily: "Train"),
+            ),
+            Divider(
+              height: 4,
+              thickness: 2,
+              color: Colors.grey[300],
+            )
           ]),
         ),
       ),

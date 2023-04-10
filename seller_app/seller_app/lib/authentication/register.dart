@@ -9,10 +9,11 @@ import 'package:seller_app/widgets/custom_text_field.dart';
 import 'package:seller_app/widgets/error_Dialog.dart';
 import 'package:seller_app/widgets/loading_dialog.dart';
 import 'package:firebase_storage/firebase_storage.dart' as fStorage;
-import 'package:seller_app/widgets/mainScreens/home_screen.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../global/global.dart';
+import '../mainScreens/home_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

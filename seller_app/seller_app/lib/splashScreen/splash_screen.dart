@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:seller_app/authentication/auth_screen.dart';
 import 'package:seller_app/global/global.dart';
-import 'package:seller_app/widgets/mainScreens/home_screen.dart';
+
+import '../mainScreens/home_screen.dart';
 
 class MySplashScreen extends StatefulWidget {
   const MySplashScreen({super.key});
@@ -52,7 +53,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
               child: Column(
                 children: const [
                   Text(
-                    'Riders Food App',
+                    'Sellers Food App',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Colors.black54,

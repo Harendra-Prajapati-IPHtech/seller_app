@@ -5,8 +5,7 @@ import 'package:seller_app/authentication/auth_screen.dart';
 import 'package:seller_app/global/global.dart';
 import 'package:seller_app/widgets/error_Dialog.dart';
 import 'package:seller_app/widgets/loading_dialog.dart';
-import 'package:seller_app/widgets/mainScreens/home_screen.dart';
-
+import '../mainScreens/home_screen.dart';
 import '../widgets/custom_text_field.dart';
 
 class LoginScreen extends StatefulWidget {
