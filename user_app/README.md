@@ -16,14 +16,3 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 
-Good evening,
-@Lekha Mishra ma'am
-Please find my today task . 
-1. Worked on user app.
-2. Get Current Location of user.
-3. Connect Rider App to Firebase and Initialise Firebase in App.
-4. Form Validation.
-5. Sign-in & Sign-up done using Firebase.
-6. Impliment Drawer .
-7. Implementing Carousel Slider for Displaying Food Items Images
-8. Sellers Model Class - Retrieve & Display Cafes/Restaurants part
