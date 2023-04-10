@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -5,22 +7,26 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:seller_app/global/global.dart';
 import 'package:seller_app/mainScreens/home_screen.dart';
+import 'package:seller_app/model/menus.dart';
 import 'package:seller_app/widgets/error_Dialog.dart';
 import 'package:seller_app/widgets/progress_bar.dart';
 import 'package:firebase_storage/firebase_storage.dart' as storageRef;
 
-class MenusUploadScreen extends StatefulWidget {
-  const MenusUploadScreen({super.key});
+class ItemsUploadScreen extends StatefulWidget {
+  final Menus? model;
+  ItemsUploadScreen({this.model});
 
   @override
-  State<MenusUploadScreen> createState() => _MenusUploadScreenState();
+  State<ItemsUploadScreen> createState() => _ItemsUploadScreenState();
 }
 
-class _MenusUploadScreenState extends State<MenusUploadScreen> {
+class _ItemsUploadScreenState extends State<ItemsUploadScreen> {
   XFile? imageXFile;
   final ImagePicker _picker = ImagePicker();
   TextEditingController shortInfoController = TextEditingController();
   TextEditingController titleController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  TextEditingController priceController = TextEditingController();
   bool uploading = false;
 
   String uniqueIdName = DateTime.now().millisecondsSinceEpoch.toString();
@@ -40,7 +46,7 @@ class _MenusUploadScreenState extends State<MenusUploadScreen> {
           ),
         ),
         title: const Text(
-          "Add New Menu",
+          "Add New Items",
           style: TextStyle(fontSize: 30, fontFamily: "Lobster"),
         ),
         centerTitle: true,
@@ -86,7 +92,7 @@ class _MenusUploadScreenState extends State<MenusUploadScreen> {
                   tekeImage(context);
                 },
                 child: const Text(
-                  'Add New Menu',
+                  'Add New Items',
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
               ),
@@ -152,7 +158,7 @@ class _MenusUploadScreenState extends State<MenusUploadScreen> {
     });
   }
 
-  menusUploadFormScreen() {
+  ItemsUploadFormScreen() {
     return Scaffold(
       appBar: AppBar(
         flexibleSpace: Container(
@@ -167,7 +173,7 @@ class _MenusUploadScreenState extends State<MenusUploadScreen> {
           ),
         ),
         title: const Text(
-          "Uploading New Menu",
+          "Uploading New Item",
           style: TextStyle(fontSize: 20, fontFamily: "Lobster"),
         ),
         centerTitle: true,
@@ -232,7 +238,7 @@ class _MenusUploadScreenState extends State<MenusUploadScreen> {
                 style: const TextStyle(color: Colors.black),
                 controller: shortInfoController,
                 decoration: const InputDecoration(
-                    hintText: "menu info",
+                    hintText: "info",
                     hintStyle: TextStyle(color: Colors.grey),
                     border: InputBorder.none),
               ),
@@ -253,11 +259,54 @@ class _MenusUploadScreenState extends State<MenusUploadScreen> {
                 style: const TextStyle(color: Colors.black),
                 controller: titleController,
                 decoration: const InputDecoration(
-                    hintText: "menu title",
+                    hintText: "title",
                     hintStyle: TextStyle(color: Colors.grey),
                     border: InputBorder.none),
               ),
             ),
+          ),
+          const Divider(
+            color: Colors.amber,
+            thickness: 2,
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.description,
+              color: Colors.cyan,
+            ),
+            title: Container(
+              width: 250,
+              child: TextField(
+                style: const TextStyle(color: Colors.black),
+                controller: descriptionController,
+                decoration: const InputDecoration(
+                    hintText: "Description",
+                    hintStyle: TextStyle(color: Colors.grey),
+                    border: InputBorder.none),
+              ),
+            ),
+          ),
+          ListTile(
+            leading: const Icon(
+              Icons.currency_rupee_sharp,
+              color: Colors.cyan,
+            ),
+            title: Container(
+              width: 250,
+              child: TextField(
+                keyboardType: TextInputType.number,
+                style: const TextStyle(color: Colors.black),
+                controller: priceController,
+                decoration: const InputDecoration(
+                    hintText: "Price",
+                    hintStyle: TextStyle(color: Colors.grey),
+                    border: InputBorder.none),
+              ),
+            ),
+          ),
+          const Divider(
+            color: Colors.amber,
+            thickness: 2,
           ),
           const Divider(
             color: Colors.amber,
@@ -292,7 +341,7 @@ class _MenusUploadScreenState extends State<MenusUploadScreen> {
             context: context,
             builder: (context) {
               return const ErrorDialog(
-                message: "Please write title and info for menu",
+                message: "Please write title and info for item",
               );
             });
       }
@@ -301,7 +350,7 @@ class _MenusUploadScreenState extends State<MenusUploadScreen> {
           context: context,
           builder: (context) {
             return const ErrorDialog(
-              message: "Please Pick an image for Menu",
+              message: "Please Pick an image for item",
             );
           });
     }
@@ -343,6 +392,6 @@ class _MenusUploadScreenState extends State<MenusUploadScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return imageXFile == null ? defaultScreen() : menusUploadFormScreen();
+    return imageXFile == null ? defaultScreen() : ItemsUploadFormScreen();
   }
 }
