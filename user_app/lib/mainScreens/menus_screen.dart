@@ -1,16 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:user_app/global/global.dart';
 import 'package:user_app/models/menus.dart';
 import 'package:user_app/widgets/menus_design.dart';
-import 'package:user_app/widgets/sellers_design.dart';
 import 'package:user_app/widgets/my_drower.dart';
 import 'package:user_app/widgets/progress_bar.dart';
 import 'package:user_app/widgets/text_widget_header.dart';
 
+import '../models/sellers.dart';
+
 class MenusScreen extends StatefulWidget {
-  const MenusScreen({super.key});
+  final Sellers? model;
+  const MenusScreen({super.key, this.model});
 
   @override
   State<MenusScreen> createState() => _MenusScreenState();
@@ -43,13 +44,14 @@ class _MenusScreenState extends State<MenusScreen> {
       body: CustomScrollView(
         slivers: [
           SliverPersistentHeader(
-            // pinned: true,
-            delegate: TextWidgetHeader(title: "My Menus"),
+             pinned: true,
+            delegate:
+                TextWidgetHeader(title: "${widget.model!.sellerName} Menus"),
           ),
           StreamBuilder<QuerySnapshot>(
             stream: FirebaseFirestore.instance
                 .collection("sellers")
-                .doc(sharedPreferences!.getString("uid"))
+                .doc(widget.model!.sellerUID)
                 .collection("menus")
                 .orderBy("publishedDate", descending: true)
                 .snapshots(),

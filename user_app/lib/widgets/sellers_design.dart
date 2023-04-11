@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_app/mainScreens/menus_screen.dart';
 import 'package:user_app/models/sellers.dart';
 
 class SellersDesignWidget extends StatefulWidget {
@@ -15,6 +16,9 @@ class _SellersDesignWidgetState extends State<SellersDesignWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>MenusScreen(model:widget.model)));
+      },
       splashColor: Colors.amber,
       child: Padding(
         padding: const EdgeInsets.all(5),

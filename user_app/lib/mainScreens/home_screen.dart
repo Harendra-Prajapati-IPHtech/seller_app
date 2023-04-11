@@ -63,9 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        title: Text(
-          sharedPreferences!.getString("name")!,
-        ),
+        title: Text("iFood"),
         centerTitle: true,
         automaticallyImplyLeading: true,
       ),

@@ -11,6 +11,7 @@ class TextWidgetHeader extends SliverPersistentHeaderDelegate {
     bool overlapsContent,
   ) {
     return InkWell(
+      onTap: () {},
       child: Container(
         height: 80,
         width: MediaQuery.of(context).size.width,

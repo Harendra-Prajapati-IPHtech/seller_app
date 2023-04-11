@@ -77,6 +77,10 @@ class _LoginScreenState extends State<LoginScreen> {
         await sharedPreferences!.setString("email", snapshot.data()!["email"]);
         await sharedPreferences!.setString("name", snapshot.data()!["name"]);
         await sharedPreferences!.setString("photo", snapshot.data()!["photo"]);
+        
+        List<String> userCartList = snapshot.data()!["userCart"].cast<String>();
+        await sharedPreferences!.setStringList("userCart", userCartList);
+
         // ignore: use_build_context_synchronously
         Navigator.pop(context);
         // ignore: use_build_context_synchronously

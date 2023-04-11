@@ -117,7 +117,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if (currentUser != null) {
       saveDataToFireStore(currentUser!).then((value) {
         Navigator.pop(context);
-        Route newRoute = MaterialPageRoute(builder: (context) => HomeScreen());
+        Route newRoute = MaterialPageRoute(builder: (context) => const HomeScreen());
         Navigator.pushReplacement(context, newRoute);
       });
     }
@@ -130,6 +130,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       "name": nameController.text.trim(),
       "photo": sellerImageUrl,
       "status": "Approved",
+      "userCart": ['garbadgeValue'],
     });
 
     // save data locally
@@ -138,6 +139,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     await sharedPreferences!.setString("email", currentUser.email.toString());
     await sharedPreferences!.setString("name", nameController.text.trim());
     await sharedPreferences!.setString("PhotoUrl", sellerImageUrl);
+    await sharedPreferences!.setStringList("userCart", ['garbadgeValue']);
   }
 
   @override
