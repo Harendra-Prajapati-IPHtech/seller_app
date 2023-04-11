@@ -1,11 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:seller_app/global/global.dart';
+import 'package:seller_app/model/items.dart';
 import 'package:seller_app/uploadScreens.dart/items_upload_screen.dart';
+import 'package:seller_app/widgets/items_design.dart';
 import 'package:seller_app/widgets/my_drower.dart';
+import 'package:seller_app/widgets/progress_bar.dart';
 import 'package:seller_app/widgets/text_widget.dart';
 
 import '../model/menus.dart';
-import '../uploadScreens.dart/menus_upload_screen.dart';
+import '../widgets/info_design.dart';
 
 class ItemsScreen extends StatefulWidget {
   final Menus? model;
@@ -56,10 +61,42 @@ class _ItemsScreenState extends State<ItemsScreen> {
       body: CustomScrollView(
         slivers: [
           SliverPersistentHeader(
-              pinned: true,
+              // pinned: true,
               delegate: TextWidgetHeader(
-                  title:
-                      "My " + widget.model!.menuTitle.toString() + "'s Items"))
+                  title: "My ${widget.model!.menuTitle}'s Items")),
+          StreamBuilder<QuerySnapshot>(
+            stream: FirebaseFirestore.instance
+                .collection("sellers")
+                .doc(sharedPreferences!.getString("uid"))
+                .collection("menus")
+                .doc(widget.model!.menuId)
+                .collection("items")
+                .orderBy("publishedDate", descending: true)
+                .snapshots(),
+            builder: (context, snapshot) {
+              return !snapshot.hasData
+                  ? SliverToBoxAdapter(
+                      child: Center(
+                        child: circularProgress(),
+                      ),
+                    )
+                  : SliverStaggeredGrid.countBuilder(
+                      crossAxisCount: 1,
+                      staggeredTileBuilder: (context) =>
+                          const StaggeredTile.fit(1),
+                      itemBuilder: (context, index) {
+                        Items model = Items.fromJson(
+                          snapshot.data!.docs[index].data()!
+                              as Map<String, dynamic>,
+                        );
+                        return ItemDesignWidget(
+                          model: model,
+                          context: context,
+                        );
+                      },
+                      itemCount: snapshot.data!.docs.length);
+            },
+          ),
         ],
       ),
     );
