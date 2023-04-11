@@ -75,44 +75,42 @@ class _HomeScreenState extends State<HomeScreen> {
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Expanded(
-                child: Container(
-                  height: MediaQuery.of(context).size.height * .3,
-                  width: MediaQuery.of(context).size.width,
-                  child: CarouselSlider(
-                    items: items.map((Index) {
-                      return Builder(builder: (BuildContext context) {
-                        return Container(
-                          width: MediaQuery.of(context).size.width,
-                          margin: const EdgeInsets.symmetric(horizontal: 1.0),
-                          decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Image.asset(
-                                Index,
-                                fit: BoxFit.fill,
-                              )),
-                        );
-                      });
-                    }).toList(),
-                    options: CarouselOptions(
-                      height: 500,
-                      aspectRatio: 16 / 9,
-                      viewportFraction: 0.8,
-                      initialPage: 0,
-                      enableInfiniteScroll: true,
-                      reverse: false,
-                      autoPlay: true,
-                      autoPlayInterval: const Duration(seconds: 2),
-                      autoPlayAnimationDuration:
-                          const Duration(milliseconds: 500),
-                      autoPlayCurve: Curves.decelerate,
-                      enlargeCenterPage: true,
-                      enlargeFactor: 0.3,
-                      scrollDirection: Axis.horizontal,
-                    ),
+              child: Container(
+                height: MediaQuery.of(context).size.height * .3,
+                width: MediaQuery.of(context).size.width,
+                child: CarouselSlider(
+                  items: items.map((Index) {
+                    return Builder(builder: (BuildContext context) {
+                      return Container(
+                        width: MediaQuery.of(context).size.width,
+                        margin: const EdgeInsets.symmetric(horizontal: 1.0),
+                        decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Image.asset(
+                              Index,
+                              fit: BoxFit.fill,
+                            )),
+                      );
+                    });
+                  }).toList(),
+                  options: CarouselOptions(
+                    height: 500,
+                    aspectRatio: 16 / 9,
+                    viewportFraction: 0.8,
+                    initialPage: 0,
+                    enableInfiniteScroll: true,
+                    reverse: false,
+                    autoPlay: true,
+                    autoPlayInterval: const Duration(seconds: 2),
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 500),
+                    autoPlayCurve: Curves.decelerate,
+                    enlargeCenterPage: true,
+                    enlargeFactor: 0.3,
+                    scrollDirection: Axis.horizontal,
                   ),
                 ),
               ),
