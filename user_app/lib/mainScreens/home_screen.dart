@@ -6,7 +6,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:user_app/global/global.dart';
 
 import 'package:user_app/models/sellers.dart';
-import 'package:user_app/widgets/info_design.dart';
+import 'package:user_app/widgets/sellers_design.dart';
 import 'package:user_app/widgets/my_drower.dart';
 import 'package:user_app/widgets/progress_bar.dart';
 
@@ -135,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               snapshot.data!.docs[index].data()
                                   as Map<String, dynamic>);
 
-                          return InfoDesignWidget(
+                          return SellersDesignWidget(
                             model: sModel,
                             context: context,
                           );

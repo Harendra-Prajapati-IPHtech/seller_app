@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:user_app/models/items.dart';
 import 'package:user_app/models/sellers.dart';
 
-class InfoDesignWidget extends StatefulWidget {
-  Sellers? model;
+class ItemsDesignWidget extends StatefulWidget {
+  Items? model;
   BuildContext? context;
 
-  InfoDesignWidget({super.key, this.model, this.context});
+  ItemsDesignWidget({super.key, this.model, this.context});
 
   @override
-  State<InfoDesignWidget> createState() => _InfoDesignWidgetState();
+  State<ItemsDesignWidget> createState() => _ItemsDesignWidgetState();
 }
 
-class _InfoDesignWidgetState extends State<InfoDesignWidget> {
+class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -28,7 +29,7 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
               color: Colors.grey[300],
             ),
             Image.network(
-              widget.model!.sellerAvtar!,
+              widget.model!.thumbnailUrl!,
               height: 220,
               fit: BoxFit.cover,
             ),
@@ -36,12 +37,12 @@ class _InfoDesignWidgetState extends State<InfoDesignWidget> {
               height: 10,
             ),
             Text(
-              widget.model!.sellerName!,
+              widget.model!.title!,
               style: const TextStyle(
                   color: Colors.cyan, fontSize: 20, fontFamily: "Train"),
             ),
             Text(
-              widget.model!.sellerEmail!,
+              widget.model!.shortInfo!,
               style: const TextStyle(
                   color: Colors.grey, fontSize: 20, fontFamily: "Train"),
             ),
