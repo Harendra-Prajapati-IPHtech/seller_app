@@ -3,6 +3,7 @@ class Sellers {
   String? sellerName;
   String? sellerEmail;
   String? sellerAvtar;
+
   Sellers({
     this.sellerUID,
     this.sellerName,

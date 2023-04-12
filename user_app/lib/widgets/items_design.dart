@@ -6,7 +6,7 @@ class ItemsDesignWidget extends StatefulWidget {
   Items? model;
   BuildContext? context;
 
-  ItemsDesignWidget({super.key, this.model, this.context});
+  ItemsDesignWidget({ this.model, this.context});
 
   @override
   State<ItemsDesignWidget> createState() => _ItemsDesignWidgetState();
@@ -20,7 +20,7 @@ class _ItemsDesignWidgetState extends State<ItemsDesignWidget> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => ItemsDetailsScreen(
+                builder: (context) => ItemDetailsScreen(
                       model: widget.model,
                     )));
       },

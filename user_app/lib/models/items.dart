@@ -28,6 +28,7 @@ class Items {
     menuId = json['menuId'];
     sellerUID = json['sellerUID'];
     title = json['title'];
+    itemId = json['itemId'];
     shortInfo = json['shortInfo'];
     // publishedDate = json['publishedDate'];
     thumbnailUrl = json['thumbnailUrl'];
@@ -42,6 +43,7 @@ class Items {
     data['menuId'] = menuId;
     data['sellerUID'] = sellerUID;
     data['title'] = title;
+    data['itemId'] = itemId;
 
     data['shortInfo'] = shortInfo;
     data['publishedDate'] = publishedDate;

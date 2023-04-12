@@ -5,15 +5,15 @@ import "package:user_app/widgets/app_bar.dart";
 
 import "../assistant_methods/assistant_methods.dart";
 
-class ItemsDetailsScreen extends StatefulWidget {
+class ItemDetailsScreen extends StatefulWidget {
   final Items? model;
-  const ItemsDetailsScreen({super.key, this.model});
+  const ItemDetailsScreen({super.key, this.model});
 
   @override
-  State<ItemsDetailsScreen> createState() => _ItemsDetailsScreenState();
+  State<ItemDetailsScreen> createState() => _ItemDetailsScreenState();
 }
 
-class _ItemsDetailsScreenState extends State<ItemsDetailsScreen> {
+class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
   TextEditingController counterTextEditingController = TextEditingController();
 
   @override

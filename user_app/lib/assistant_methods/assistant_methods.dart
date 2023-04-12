@@ -5,8 +5,8 @@ import 'package:user_app/global/global.dart';
 
 addItemToCart(String? foodItemId, BuildContext context, int itemCounter) {
   List<String>? tempList = sharedPreferences!.getStringList("userCart");
-
-  tempList!.add(foodItemId!+":$itemCounter"); //1210259022: 2
+  // foodItemId = 'garbadgevalue';
+  tempList!.add(foodItemId! +" : $itemCounter"); //1210259022: 2
 
   FirebaseFirestore.instance
       .collection("users")

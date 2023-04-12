@@ -10,7 +10,7 @@ class MyAppbar extends StatefulWidget with PreferredSizeWidget {
   // TODO: implement preferredSize
   Size get preferredSize => bottom == null
       ? Size(56, AppBar().preferredSize.height)
-      : Size(56, 80+AppBar().preferredSize.height);
+      : Size(56, 80 + AppBar().preferredSize.height);
 }
 
 class _MyAppbarState extends State<MyAppbar> {

@@ -6,7 +6,6 @@ import 'package:user_app/global/global.dart';
 import 'package:user_app/widgets/error_Dialog.dart';
 import 'package:user_app/widgets/loading_dialog.dart';
 import 'package:user_app/mainScreens/home_screen.dart';
-
 import '../widgets/custom_text_field.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -77,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
         await sharedPreferences!.setString("email", snapshot.data()!["email"]);
         await sharedPreferences!.setString("name", snapshot.data()!["name"]);
         await sharedPreferences!.setString("photo", snapshot.data()!["photo"]);
-        
+
         List<String> userCartList = snapshot.data()!["userCart"].cast<String>();
         await sharedPreferences!.setStringList("userCart", userCartList);
 

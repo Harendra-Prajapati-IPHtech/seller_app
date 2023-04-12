@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:user_app/global/global.dart';
 
 import 'package:user_app/models/sellers.dart';
 import 'package:user_app/widgets/sellers_design.dart';
@@ -63,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        title: Text("iFood"),
+        title: const Text("iFood"),
         centerTitle: true,
         automaticallyImplyLeading: true,
       ),

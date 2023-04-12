@@ -19,7 +19,6 @@ class _ItemsScreenState extends State<ItemsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       appBar: AppBar(
         flexibleSpace: Container(
           decoration: const BoxDecoration(
@@ -39,7 +38,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
             icon: const Icon(Icons.arrow_back)),
         title: const Text(
           "iFood",
-          style: TextStyle(fontSize: 4, fontFamily: "Signatra"),
+          style: TextStyle(fontSize: 45, fontFamily: "Signatra"),
         ),
         centerTitle: true,
         automaticallyImplyLeading: true,
@@ -76,7 +75,6 @@ class _ItemsScreenState extends State<ItemsScreen> {
           )
         ],
       ),
-      
       body: CustomScrollView(
         slivers: [
           SliverPersistentHeader(
