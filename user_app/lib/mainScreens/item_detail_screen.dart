@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:fluttertoast/fluttertoast.dart";
 import "package:number_inc_dec/number_inc_dec.dart";
 import "package:user_app/models/items.dart";
 import "package:user_app/widgets/app_bar.dart";
@@ -74,7 +75,11 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
               onTap: () {
                 int itemCounter = int.parse(counterTextEditingController.text);
 
-                addItemToCart(widget.model!.itemId, context, itemCounter);
+                List<String> seprateItemIdsList = separateItemIds();
+
+                seprateItemIdsList.contains(widget.model!.itemId)
+                    ? Fluttertoast.showToast(msg: "Item is already in cart")
+                    : addItemToCart(widget.model!.itemId, context, itemCounter);
               },
               child: Container(
                 decoration: const BoxDecoration(
