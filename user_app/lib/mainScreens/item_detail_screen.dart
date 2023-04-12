@@ -20,7 +20,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppbar(),
+      appBar: MyAppbar(sellerUID:widget.model!.sellerUID),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

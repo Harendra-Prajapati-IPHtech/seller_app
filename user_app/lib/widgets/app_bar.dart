@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:user_app/assistant_methods/cart_item_counter.dart';
+import 'package:user_app/mainScreens/cart_screen.dart';
 
 class MyAppbar extends StatefulWidget with PreferredSizeWidget {
   final PreferredSizeWidget? bottom;
-  MyAppbar({this.bottom});
+  final String? sellerUID;
+
+  MyAppbar({this.bottom, this.sellerUID});
   @override
   State<MyAppbar> createState() => _MyAppbarState();
 
@@ -16,7 +21,10 @@ class MyAppbar extends StatefulWidget with PreferredSizeWidget {
 class _MyAppbarState extends State<MyAppbar> {
   @override
   Widget build(BuildContext context) {
-    return AppBar(
+
+    return 
+    
+    AppBar(
       flexibleSpace: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -35,7 +43,7 @@ class _MyAppbarState extends State<MyAppbar> {
           icon: const Icon(Icons.arrow_back)),
       title: const Text(
         "iFood",
-        style: TextStyle(fontSize: 4, fontFamily: "Signatra"),
+        style: TextStyle(fontSize: 45, fontFamily: "Signatra"),
       ),
       centerTitle: true,
       automaticallyImplyLeading: true,
@@ -43,15 +51,21 @@ class _MyAppbarState extends State<MyAppbar> {
         Stack(
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            CartScreen(sellerUID: widget.sellerUID)));
+              },
               icon: const Icon(
                 Icons.shopping_cart,
                 color: Colors.white,
               ),
             ),
             Stack(
-              children: const [
-                Icon(
+              children: [
+                const Icon(
                   Icons.brightness_1,
                   size: 20,
                   color: Colors.green,
@@ -60,10 +74,14 @@ class _MyAppbarState extends State<MyAppbar> {
                   top: 3,
                   right: 4,
                   child: Center(
-                    child: Text(
-                      "0",
-                      style: TextStyle(color: Colors.white, fontSize: 12),
-                    ),
+                    child: Consumer<CartItemCounter>(
+                        builder: (context, counter, c) {
+                      return Text(
+                        counter.count.toString(),
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 12),
+                      );
+                    }),
                   ),
                 ),
               ],
@@ -72,5 +90,6 @@ class _MyAppbarState extends State<MyAppbar> {
         )
       ],
     );
+  
   }
 }

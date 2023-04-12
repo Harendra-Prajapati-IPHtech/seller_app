@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
+import 'package:user_app/assistant_methods/cart_item_counter.dart';
 import 'package:user_app/global/global.dart';
+import 'package:user_app/splashScreen/splash_screen.dart';
 
 separateItemIds() {
   List<String> separateItemIdsList = [], defaultItemList = [];
@@ -38,5 +41,49 @@ addItemToCart(String? foodItemId, BuildContext context, int itemCounter) {
     sharedPreferences!.setStringList("userCart", tempList);
 
     //update the page
+
+    Provider.of<CartItemCounter>(context, listen: false)
+        .displayCartListItemsNumber();
+  });
+}
+
+separateItemQuantities() {
+  List<int> separateItemQuantityList = [];
+  List<String> defaultItemList = [];
+
+  defaultItemList = sharedPreferences!.getStringList("userCart")!;
+
+  for (int i = 1; i < defaultItemList.length; i++) {
+    String item = defaultItemList[i].toString();
+
+    List<String> listItemCharacters = item.split(":").toList();
+
+    var quanNumber = int.parse(listItemCharacters[1].toString());
+
+    print("\n This is Quantity number now =" + quanNumber.toString());
+
+    separateItemQuantityList.add(quanNumber);
+  }
+  print("\n This is  Quantity  List now =");
+  print(separateItemQuantityList);
+  return separateItemQuantityList;
+}
+
+clearCartNow(context) {
+  sharedPreferences!.setStringList("userCart", ['garbageValue']);
+
+  List<String>? emptyList = sharedPreferences!.getStringList("userCart");
+
+  FirebaseFirestore.instance
+      .collection("users")
+      .doc(firebaseAuth.currentUser!.uid)
+      .update({"userCart": emptyList}).then((value) {
+    sharedPreferences!.setStringList("userCart", emptyList!);
+    Provider.of<CartItemCounter>(context, listen: false)
+        .displayCartListItemsNumber();
+
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const MySplashScreen()));
+    Fluttertoast.showToast(msg: "cart has been cleared");
   });
 }
