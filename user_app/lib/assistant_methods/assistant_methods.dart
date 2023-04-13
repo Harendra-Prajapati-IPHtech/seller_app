@@ -6,6 +6,7 @@ import 'package:user_app/assistant_methods/cart_item_counter.dart';
 import 'package:user_app/global/global.dart';
 import 'package:user_app/splashScreen/splash_screen.dart';
 
+
 separateItemIds() {
   List<String> separateItemIdsList = [], defaultItemList = [];
   int i = 0;
@@ -28,7 +29,7 @@ separateItemIds() {
 addItemToCart(String? foodItemId, BuildContext context, int itemCounter) {
   List<String>? tempList = sharedPreferences!.getStringList("userCart");
   // foodItemId = 'garbadgevalue';
-  tempList!.add(foodItemId! + ":$itemCounter"); //1210259022: 2
+  tempList!.add("${foodItemId!}:$itemCounter"); //1210259022: 2
 
   FirebaseFirestore.instance
       .collection("users")
@@ -82,8 +83,6 @@ clearCartNow(context) {
     Provider.of<CartItemCounter>(context, listen: false)
         .displayCartListItemsNumber();
 
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const MySplashScreen()));
-    Fluttertoast.showToast(msg: "cart has been cleared");
+   
   });
 }

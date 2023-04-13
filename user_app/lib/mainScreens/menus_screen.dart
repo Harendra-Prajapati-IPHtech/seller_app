@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:user_app/assistant_methods/assistant_methods.dart';
 import 'package:user_app/models/menus.dart';
 import 'package:user_app/widgets/menus_design.dart';
 import 'package:user_app/widgets/my_drower.dart';
@@ -8,6 +9,7 @@ import 'package:user_app/widgets/progress_bar.dart';
 import 'package:user_app/widgets/text_widget_header.dart';
 
 import '../models/sellers.dart';
+import '../splashScreen/splash_screen.dart';
 
 class MenusScreen extends StatefulWidget {
   final Sellers? model;
@@ -21,7 +23,6 @@ class _MenusScreenState extends State<MenusScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MyDrawer(),
       appBar: AppBar(
         flexibleSpace: Container(
           decoration: const BoxDecoration(
@@ -34,6 +35,15 @@ class _MenusScreenState extends State<MenusScreen> {
             ),
           ),
         ),
+        leading: IconButton(
+            onPressed: () {
+              clearCartNow(context);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MySplashScreen()));
+            },
+            icon: Icon(Icons.arrow_back)),
         title: const Text(
           "iFood",
           style: TextStyle(fontSize: 45, fontFamily: "Signatra"),
@@ -44,7 +54,7 @@ class _MenusScreenState extends State<MenusScreen> {
       body: CustomScrollView(
         slivers: [
           SliverPersistentHeader(
-             pinned: true,
+            pinned: true,
             delegate:
                 TextWidgetHeader(title: "${widget.model!.sellerName} Menus"),
           ),

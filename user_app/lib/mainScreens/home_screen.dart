@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:user_app/assistant_methods/assistant_methods.dart';
 
 import 'package:user_app/models/sellers.dart';
 import 'package:user_app/widgets/sellers_design.dart';
@@ -47,6 +48,14 @@ class _HomeScreenState extends State<HomeScreen> {
     "assets/images/slider/26.jpg",
     "assets/images/slider/27.jpg",
   ];
+
+  @override
+  void initState() {
+    super.initState();
+
+    clearCartNow(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +71,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        title: const Text("iFood"),
+        title: const Text(
+          "iFood",
+          style: TextStyle(fontFamily: "Signatra", fontSize: 40),
+        ),
         centerTitle: true,
         automaticallyImplyLeading: true,
       ),
