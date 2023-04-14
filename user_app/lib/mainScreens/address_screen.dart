@@ -24,7 +24,9 @@ class _AddressScreenState extends State<AddressScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SimpleAppbar(),
+      appBar: SimpleAppBar(
+        title: "iFood",
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.push(context,

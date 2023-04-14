@@ -56,7 +56,9 @@ class SaveAddressScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SimpleAppbar(),
+      appBar: SimpleAppBar(
+        title: "iFood",
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           //save address info

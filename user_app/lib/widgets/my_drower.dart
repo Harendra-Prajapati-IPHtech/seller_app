@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:user_app/authentication/auth_screen.dart';
 import 'package:user_app/global/global.dart';
+import 'package:user_app/mainScreens/home_screen.dart';
+import 'package:user_app/mainScreens/my_orders_screen.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
@@ -60,7 +62,12 @@ class MyDrawer extends StatelessWidget {
                     "Home",
                     style: TextStyle(color: Colors.black),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HomeScreen()));
+                  },
                 ),
                 const Divider(
                   height: 10,
@@ -76,7 +83,12 @@ class MyDrawer extends StatelessWidget {
                     "My Orders",
                     style: TextStyle(color: Colors.black),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyOrderScreen()));
+                  },
                 ),
                 const Divider(
                   height: 10,
@@ -92,7 +104,12 @@ class MyDrawer extends StatelessWidget {
                     "History",
                     style: TextStyle(color: Colors.black),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyOrderScreen()));
+                  },
                 ),
                 const Divider(
                   height: 10,
@@ -108,7 +125,12 @@ class MyDrawer extends StatelessWidget {
                     "Search",
                     style: TextStyle(color: Colors.black),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyOrderScreen()));
+                  },
                 ),
                 const Divider(
                   height: 10,

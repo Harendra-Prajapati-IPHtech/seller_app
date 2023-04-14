@@ -4,8 +4,23 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:user_app/assistant_methods/cart_item_counter.dart';
 import 'package:user_app/global/global.dart';
-import 'package:user_app/splashScreen/splash_screen.dart';
 
+separateOrderItemIds(orderId) {
+  List<String> separateItemIdsList = [], defaultItemList = [];
+  int i = 0;
+
+  defaultItemList = List<String>.from(orderId);
+
+  for (i; i < defaultItemList.length; i++) {
+    String item = defaultItemList[i].toString();
+    var pos = item.lastIndexOf(":");
+    String getItemId = (pos != -1) ? item.substring(0, pos) : item;
+
+    separateItemIdsList.add(getItemId);
+  }
+
+  return separateItemIdsList;
+}
 
 separateItemIds() {
   List<String> separateItemIdsList = [], defaultItemList = [];
@@ -17,12 +32,9 @@ separateItemIds() {
     var pos = item.lastIndexOf(":");
     String getItemId = (pos != -1) ? item.substring(0, pos) : item;
 
-    print("\n This is itemId now =$getItemId");
-
     separateItemIdsList.add(getItemId);
   }
-  print("\n This is item List now =");
-  print(separateItemIdsList);
+
   return separateItemIdsList;
 }
 
@@ -48,6 +60,25 @@ addItemToCart(String? foodItemId, BuildContext context, int itemCounter) {
   });
 }
 
+separateOrderItemQuantities(orderId) {
+  List<String> separateItemQuantityList = [];
+  List<String> defaultItemList = [];
+
+  defaultItemList = List<String>.from(orderId);
+
+  for (int i = 1; i < defaultItemList.length; i++) {
+    String item = defaultItemList[i].toString();
+
+    List<String> listItemCharacters = item.split(":").toList();
+
+    var quanNumber = int.parse(listItemCharacters[1].toString());
+
+    separateItemQuantityList.add(quanNumber.toString());
+  }
+
+  return separateItemQuantityList;
+}
+
 separateItemQuantities() {
   List<int> separateItemQuantityList = [];
   List<String> defaultItemList = [];
@@ -61,12 +92,9 @@ separateItemQuantities() {
 
     var quanNumber = int.parse(listItemCharacters[1].toString());
 
-    print("\n This is Quantity number now =" + quanNumber.toString());
-
     separateItemQuantityList.add(quanNumber);
   }
-  print("\n This is  Quantity  List now =");
-  print(separateItemQuantityList);
+
   return separateItemQuantityList;
 }
 
@@ -82,7 +110,5 @@ clearCartNow(context) {
     sharedPreferences!.setStringList("userCart", emptyList!);
     Provider.of<CartItemCounter>(context, listen: false)
         .displayCartListItemsNumber();
-
-   
   });
 }

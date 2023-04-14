@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-class SimpleAppbar extends StatelessWidget with PreferredSizeWidget {
+class SimpleAppBar extends StatelessWidget with PreferredSizeWidget {
+  String? title;
+
   final PreferredSizeWidget? bottom;
 
-  SimpleAppbar({this.bottom});
+  SimpleAppBar({super.key, this.bottom, this.title});
   @override
   Size get preferredSize => bottom == null
       ? Size(56, AppBar().preferredSize.height)
@@ -23,9 +25,9 @@ class SimpleAppbar extends StatelessWidget with PreferredSizeWidget {
           ),
         ),
       ),
-      title: const Text(
-        "iFood",
-        style: TextStyle(fontSize: 45, fontFamily: "Signatra"),
+      title: Text(
+        title!,
+        style: const TextStyle(fontSize: 45, fontFamily: "Signatra"),
       ),
       centerTitle: true,
       automaticallyImplyLeading: true,
