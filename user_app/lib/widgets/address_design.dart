@@ -135,8 +135,7 @@ class _AddressDesignState extends State<AddressDesign> {
             ),
             ElevatedButton(
               onPressed: () {
-                
-                // MapsUtils.openMapWithAddress(widget.model!.fullAddress!); 
+                // MapsUtils.openMapWithAddress(widget.model!.fullAddress!);
                 MapsUtils.openMapWithPosition(
                     widget.model!.lat!, widget.model!.lng!);
               },
