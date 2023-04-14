@@ -6,7 +6,6 @@ import 'package:user_app/assistant_methods/assistant_methods.dart';
 import 'package:user_app/assistant_methods/cart_item_counter.dart';
 import 'package:user_app/mainScreens/address_screen.dart';
 import 'package:user_app/models/items.dart';
-import 'package:user_app/models/sellers.dart';
 import 'package:user_app/widgets/cart_item_design.dart';
 import 'package:user_app/widgets/progress_bar.dart';
 
@@ -37,8 +36,7 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: 
-      AppBar(
+      appBar: AppBar(
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -72,6 +70,7 @@ class _CartScreenState extends State<CartScreen> {
           Align(
             alignment: Alignment.bottomLeft,
             child: FloatingActionButton.extended(
+              heroTag: 'btn1',
               onPressed: () {
                 clearCartNow(context);
                 Navigator.push(
@@ -88,12 +87,15 @@ class _CartScreenState extends State<CartScreen> {
           Align(
             alignment: Alignment.bottomRight,
             child: FloatingActionButton.extended(
+              heroTag: 'btn2',
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AddressScreen(
-                      totolAmmount:totolAmmount.toDouble(),
-                      sellerUID:widget.sellerUID,
-                    )));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AddressScreen(
+                              totolAmmount: totolAmmount.toDouble(),
+                              sellerUID: widget.sellerUID,
+                            )));
               },
               label: const Text("Check Out"),
               backgroundColor: Colors.cyan,
@@ -112,7 +114,7 @@ class _CartScreenState extends State<CartScreen> {
             child: Consumer2<TotalAmmount, CartItemCounter>(
               builder: (context, amountProvidr, cartProvider, c) {
                 return Padding(
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: Center(
                     child: cartProvider.count == 0
                         ? Container()
@@ -132,7 +134,7 @@ class _CartScreenState extends State<CartScreen> {
               stream: FirebaseFirestore.instance
                   .collection("items")
                   .where("itemId", whereIn: separateItemIds())
-                  .orderBy("publishedDate", descending: true)
+                  .orderBy("publishedDate", descending: false)
                   .snapshots(),
               builder: (context, snapshot) {
                 return !snapshot.hasData
