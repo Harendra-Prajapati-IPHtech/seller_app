@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:user_app/assistant_methods/address_changer.dart';
-import 'package:user_app/maps/maps.dart';
+
 import 'package:user_app/models/address.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../maps/maps.dart';
 
 class AddressDesign extends StatefulWidget {
   final Address? model;
@@ -132,9 +135,10 @@ class _AddressDesignState extends State<AddressDesign> {
             ),
             ElevatedButton(
               onPressed: () {
+                
+                // MapsUtils.openMapWithAddress(widget.model!.fullAddress!); 
                 MapsUtils.openMapWithPosition(
-                    widget.model!.lattitude, widget.model!.longitude);
-                // MapsUtils.openMapWithAddress(widget.model!.fullAddress!);
+                    widget.model!.lat!, widget.model!.lng!);
               },
               style: ElevatedButton.styleFrom(backgroundColor: Colors.black54),
               child: const Text("Check on Maps"),
