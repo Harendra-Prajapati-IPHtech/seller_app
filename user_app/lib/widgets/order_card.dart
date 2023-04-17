@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:user_app/models/items.dart';
 
+import '../mainScreens/order_details_screen.dart';
+
 class OrderCard extends StatelessWidget {
   final int? itemCount;
   final List<DocumentSnapshot>? data;
@@ -17,7 +19,10 @@ class OrderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => OrderDetailsScreen(orderId:orderId)));
+      },
       child: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -36,9 +41,9 @@ class OrderCard extends StatelessWidget {
         child: ListView.builder(
           itemCount: itemCount,
           physics: const NeverScrollableScrollPhysics(),
-          itemBuilder: (context, index) {
+          itemBuilder: (c, index) {
             Items model =
-                Items.fromJson(data![index].data() as Map<String, dynamic>);
+                Items.fromJson(data![index].data()! as Map<String, dynamic>);
             return placedOrderDesignWidget(
                 model, context, seperateQuantitiesList![index]);
           },
@@ -87,7 +92,7 @@ Widget placedOrderDesignWidget(
                     height: 10,
                   ),
                   const Text(
-                    "",
+                    "₹",
                     style: TextStyle(fontSize: 16, color: Colors.blue),
                   ),
                   Text(
@@ -106,13 +111,14 @@ Widget placedOrderDesignWidget(
                     style: TextStyle(color: Colors.black54, fontSize: 14),
                   ),
                   Expanded(
-                      child: Text(
-                    seperateQuantitiesList,
-                    style: const TextStyle(
-                        color: Colors.black54,
-                        fontSize: 30,
-                        fontFamily: "Acme"),
-                  ))
+                    child: Text(
+                      seperateQuantitiesList,
+                      style: const TextStyle(
+                          color: Colors.black54,
+                          fontSize: 30,
+                          fontFamily: "Acme"),
+                    ),
+                  )
                 ],
               ),
             ],

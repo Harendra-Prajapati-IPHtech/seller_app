@@ -10,7 +10,8 @@ class PlacedOrderScreen extends StatefulWidget {
   double? totolAmmount;
   String? sellerUID;
 
-  PlacedOrderScreen({this.addressID, this.totolAmmount, this.sellerUID});
+  PlacedOrderScreen(
+      {super.key, this.addressID, this.totolAmmount, this.sellerUID});
 
   @override
   State<PlacedOrderScreen> createState() => _PlacedOrderScreenState();
@@ -26,10 +27,10 @@ class _PlacedOrderScreenState extends State<PlacedOrderScreen> {
       "productIds": sharedPreferences!.getStringList("userCart"),
       "paymentDetails": "Cash on Delivery",
       "orderTime": orderId,
-      "isSuccess": "isSuccess",
+      "isSuccess": true,
       "sellerUID": widget.sellerUID,
       "riderUID": "",
-      "status": "Normal",
+      "status": "normal",
       "orderId": orderId,
     });
 
@@ -40,10 +41,10 @@ class _PlacedOrderScreenState extends State<PlacedOrderScreen> {
       "productIds": sharedPreferences!.getStringList("userCart"),
       "paymentDetails": "Cash on Delivery",
       "orderTime": orderId,
-      "isSuccess": "isSuccess",
+      "isSuccess": true,
       "sellerUID": widget.sellerUID,
       "riderUID": "",
-      "status": "Normal",
+      "status": "normal",
       "orderId": orderId,
     }).whenComplete(() {
       clearCartNow(context);
@@ -93,7 +94,7 @@ class _PlacedOrderScreenState extends State<PlacedOrderScreen> {
         ),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           Image.asset("assets/images/delivery.jpg"),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           ElevatedButton(
             onPressed: () {
               addOrderDetails();

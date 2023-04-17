@@ -6,9 +6,7 @@ import 'package:user_app/assistant_methods/address_changer.dart';
 import 'package:user_app/assistant_methods/cart_item_counter.dart';
 import 'package:user_app/assistant_methods/total_ammount.dart';
 import 'package:user_app/splashScreen/splash_screen.dart';
-
 import 'global/global.dart';
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPreferences = await SharedPreferences.getInstance();

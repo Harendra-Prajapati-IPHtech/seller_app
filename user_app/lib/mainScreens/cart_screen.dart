@@ -134,7 +134,7 @@ class _CartScreenState extends State<CartScreen> {
               stream: FirebaseFirestore.instance
                   .collection("items")
                   .where("itemId", whereIn: separateItemIds())
-                  .orderBy("publishedDate", descending: false)
+                  .orderBy("publishedDate", descending: true)
                   .snapshots(),
               builder: (context, snapshot) {
                 return !snapshot.hasData
@@ -143,7 +143,7 @@ class _CartScreenState extends State<CartScreen> {
                           child: circularProgress(),
                         ),
                       )
-                    : snapshot.data!.docs.length == 0
+                    : snapshot.data!.docs.isEmpty
                         ? Container()
                         : SliverList(
                             delegate: SliverChildBuilderDelegate(

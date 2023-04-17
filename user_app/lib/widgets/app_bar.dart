@@ -25,7 +25,8 @@ class _MyAppbarState extends State<MyAppbar> {
     return 
     
     AppBar(
-      flexibleSpace: Container(
+      flexibleSpace: 
+      Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Colors.cyan, Colors.amber],
