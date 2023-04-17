@@ -71,7 +71,7 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             "Order at: " +
-                                DateFormat("dd MMMM, yyyy - hh:mm aa").format(
+                                DateFormat("dd MMMM yyyy hh:mm aa").format(
                                   DateTime.fromMillisecondsSinceEpoch(
                                     int.parse(dataMap["orderTime"]),
                                   ),

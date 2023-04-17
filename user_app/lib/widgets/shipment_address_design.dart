@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:user_app/mainScreens/home_screen.dart';
 import 'package:user_app/models/address.dart';
 import 'package:user_app/splashScreen/splash_screen.dart';
 
@@ -23,7 +22,7 @@ class ShipmentAddressDesign extends StatelessWidget {
         const SizedBox(
           height: 6,
         ),
-        Container(
+        SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 90, vertical: 5),
