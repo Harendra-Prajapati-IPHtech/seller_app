@@ -7,7 +7,8 @@ import 'package:seller_app/uploadScreens.dart/menus_upload_screen.dart';
 import 'package:seller_app/widgets/info_design.dart';
 import 'package:seller_app/widgets/my_drower.dart';
 import 'package:seller_app/widgets/progress_bar.dart';
-import 'package:seller_app/widgets/text_widget.dart';
+import 'package:seller_app/widgets/text_widget_header.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

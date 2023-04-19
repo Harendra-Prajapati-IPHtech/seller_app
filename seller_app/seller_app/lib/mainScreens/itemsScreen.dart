@@ -7,10 +7,10 @@ import 'package:seller_app/uploadScreens.dart/items_upload_screen.dart';
 import 'package:seller_app/widgets/items_design.dart';
 import 'package:seller_app/widgets/my_drower.dart';
 import 'package:seller_app/widgets/progress_bar.dart';
-import 'package:seller_app/widgets/text_widget.dart';
+import 'package:seller_app/widgets/text_widget_header.dart';
+
 
 import '../model/menus.dart';
-import '../widgets/info_design.dart';
 
 class ItemsScreen extends StatefulWidget {
   final Menus? model;
